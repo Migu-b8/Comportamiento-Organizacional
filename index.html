@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comportamiento Organizacional | Teorías y Bienestar</title>
+    <style>
+        /* --- 1. VARIABLES Y RESET --- */
+        :root {
+            --primary-color: #2c3e50;      /* Azul Oscuro */
+            --secondary-color: #3498db;    /* Azul Claro */
+            --accent-success: #27ae60;     /* Verde */
+            --accent-warning: #f1c40f;     /* Amarillo */
+            --accent-danger: #c0392b;      /* Rojo */
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        /* --- 2. HEADER Y NAV --- */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        header h1 { margin: 0; font-size: 2.8rem; font-weight: 300; }
+        header p { opacity: 0.9; margin-top: 10px; font-size: 1.2rem; }
+
+        nav {
+            background-color: #1a252f;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--secondary-color); }
+
+        /* --- 3. LAYOUT GENERAL --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: #2980b9;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        p { margin-bottom: 15px; text-align: justify; }
+
+        /* --- 4. SECCIÓN TEORÍAS (GRID COMPARATIVO) --- */
+        .theories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .theory-card {
+            background: #fff;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .theory-card:hover { transform: translateY(-5px); }
+
+        /* Bordes de color para diferenciar */
+        .theory-conductual { border-top: 5px solid var(--accent-danger); } /* Estímulo */
+        .theory-humanista { border-top: 5px solid var(--accent-warning); } /* Crecimiento */
+
+        .theory-card ul { padding-left: 20px; }
+        .theory-card li { margin-bottom: 8px; }
+
+        /* --- 5. SECCIÓN BIG FIVE (OCEAN) --- */
+        .big-five-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .trait-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .trait-card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        /* --- 6. SECCIÓN SALUD (DASHBOARD & ESTRATEGIAS) --- */
+        .health-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .data-card {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            border-top: 4px solid var(--secondary-color);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Colores específicos para datos */
+        .dc-mental { border-top-color: #3498db; }
+        .dc-economic { border-top-color: var(--accent-danger); }
+        .dc-risk { border-top-color: #e67e22; }
+        .dc-modifiable { border-top-color: var(--accent-success); }
+
+        .data-card h4 { font-size: 1rem; color: #555; margin-top: 0; }
+
+        /* Columnas de Estrategias */
+        .strategies-split {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .strategy-column {
+            flex: 1;
+            min-width: 300px;
+            background: #f1f2f6;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .strategy-column h3 {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .strategy-column ul { list-style: none; padding: 0; }
+        
+        .strategy-column li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #dcdcdc;
+            padding-bottom: 5px;
+        }
+
+        .strategy-column li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--accent-success);
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            nav a { display: block; margin: 10px 0; }
+            .strategies-split { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Comportamiento Organizacional</h1>
+    </header>
+
+    <nav>
+        <a href="#intro">Introducción</a>
+        <a href="#teorias">Teorías</a>
+        <a href="#ocean">5 Grandes (OCEAN)</a>
+        <a href="#salud">Salud Laboral</a>
+        <a href="#ocupacional-tecnico">Marco legal</a>
+    </nav>
+
+    <div class="container">
+
+        <section id="intro">
+            <h2>Introducción</h2>
+            <p>
+                El <strong>Comportamiento Organizacional (CO)</strong> investiga el impacto que individuos, grupos y estructuras tienen sobre el comportamiento dentro de las organizaciones. Su finalidad es aplicar este conocimiento para mejorar la eficacia empresarial.
+            </p>
+            <p>
+                Entender la personalidad es una herramienta de gestión crítica. Nos permite predecir reacciones ante el estrés, identificar líderes naturales y diseñar sistemas de incentivos efectivos.
+            </p>
+            
+
+[Image of diagram showing interaction between individual group and organization systems]
+
+        </section>
+
+        <section id="teorias">
+            <h2>Teorías de la Personalidad</h2>
+            <p>Existen diversos enfoques para entender por qué los empleados actúan como actúan. Aquí comparamos dos de los más influyentes:</p>
+            
+            <div class="theories-grid">
+                <article class="theory-card theory-conductual">
+                    <h3>Teoría Conductual</h3>
+                    <p><strong>Enfoque:</strong> El comportamiento es aprendido y es resultado del entorno.</p>
+                    <p>Impulsada por B.F. Skinner, sostiene que la personalidad no es fija. Se centra en lo observable y en cómo los estímulos (recompensas/castigos) moldean la conducta.</p>
+                    <ul>
+                        <li><strong>Mecanismo:</strong> Condicionamiento Operante.</li>
+                        <li><strong>Aplicación:</strong> Si cambias los incentivos y el ambiente físico, cambiarás el comportamiento del empleado.</li>
+                    </ul>
+                </article>
+
+                <article class="theory-card theory-humanista">
+                    <h3>Teoría Humanista</h3>
+                    <p><strong>Enfoque:</strong> El ser humano tiende naturalmente al crecimiento.</p>
+                    <p>Liderada por Carl Rogers y Maslow. Critica la visión "mecánica" del conductismo y se centra en la autorrealización, la experiencia subjetiva y el potencial interno.</p>
+                    <ul>
+                        <li><strong>Mecanismo:</strong> Motivación interna y jerarquía de necesidades.</li>
+                        <li><strong>Aplicación:</strong> Liderazgo empático, confianza y fomento de la creatividad individual.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="ocean">
+            <h2>El Modelo de los 5 Grandes (OCEAN)</h2>
+            <p>
+                Desarrollado por teóricos como <strong>Raymond Cattell</strong>, este modelo es el estándar actual para describir la personalidad mediante 5 dimensiones clave:
+            </p>
+
+            <div class="big-five-grid">
+                <div class="trait-card">
+                    <h4>(O) Apertura a la Experiencia</h4>
+                    <p>Creatividad, curiosidad intelectual y gusto por la novedad. Su opuesto es la cerrazón o resistencia al cambio.</p>
+                </div>
+                
+                <div class="trait-card">
+                    <h4>(C) Responsabilidad (Conscientiousness)</h4>
+                    <p>Autodisciplina, organización y orientación al logro. Es el mejor predictor del desempeño laboral general.</p>
+                </div>
+
+                <div class="trait-card">
+                    <h4>(E) Extraversión</h4>
+                    <p>Búsqueda de energía en contextos sociales y asertividad. Su opuesto es la introversión (reserva, reflexión).</p>
+                </div>
+
+                <div class="trait-card">
+                    <h4>(A) Amabilidad</h4>
+                    <p>Tendencia a ser compasivo, cooperativo y empático. Clave para el trabajo en equipo y clima laboral.</p>
+                </div>
+
+                <div class="trait-card">
+                    <h4>(N) Neuroticismo</h4>
+                    <p>Inestabilidad emocional. Mide la capacidad de gestionar el estrés y la ansiedad ante situaciones críticas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="salud">
+            <h2>Salud y Entorno Laboral</h2>
+            <p>
+                La relación salud-trabajo es bidireccional. Un entorno tóxico destruye la salud, y una mala salud destruye la productividad.
+            </p>
+
+            <div class="health-dashboard">
+                <div class="data-card dc-mental">
+                    <h4>🧠 Salud Mental</h4>
+                    <p>El trabajo da propósito, pero entornos deficientes son detonantes directos de trastornos mentales.</p>
+                </div>
+                <div class="data-card dc-economic">
+                    <h4>📉 Impacto Económico</h4>
+                    <p>Pérdida de <strong>12 mil millones</strong> de días de trabajo y <strong>1 billón USD</strong> anuales por ansiedad/depresión.</p>
+                </div>
+                <div class="data-card dc-risk">
+                    <h4>⚠️ Riesgos Psicosociales</h4>
+                    <p>Sobrecarga, falta de autonomía, acoso, inseguridad laboral y mala comunicación.</p>
+                </div>
+                <div class="data-card dc-modifiable">
+                    <h4>🔄 Factores Clave</h4>
+                    <p>Interacción social, mentalidad, seguridad económica y sueño son factores modificables.</p>
+                </div>
+            </div>
+
+            <h3 style="text-align:center; color: var(--primary-color);">Estrategias de Mejora</h3>
+            
+            <div class="strategies-split">
+                <div class="strategy-column">
+                    <h3>Para Empleados</h3>
+                    <ul>
+                        <li><strong>Límites Claros:</strong> Desconéctate digitalmente tras el horario laboral.</li>
+                        <li><strong>Salud Física:</strong> Prioriza sueño, hidratación y ejercicio (ej. calistenia).</li>
+                        <li><strong>Gestión de Estrés:</strong> Identifica detonantes y practica relajación.</li>
+                        <li><strong>Red de Apoyo:</strong> Comunica tus sentimientos a familia y compañeros.</li>
+                        <li><strong>Ayuda Profesional:</strong> Consulta a un psicólogo si la ansiedad persiste.</li>
+                    </ul>
+                </div>
+
+                <div class="strategy-column">
+                    <h3>Para Líderes y Empresas</h3>
+                    <ul>
+                        <li><strong>Cultura de Apoyo:</strong> Respeta el equilibrio vida-trabajo y la diversidad.</li>
+                        <li><strong>Comunicación:</strong> Canales transparentes y bidireccionales.</li>
+                        <li><strong>Roles Claros:</strong> Elimina la ambigüedad en las funciones.</li>
+                        <li><strong>Carga Realista:</strong> Evita la saturación sistemática del personal.</li>
+                        <li><strong>Flexibilidad:</strong> Facilita el teletrabajo o pausas activas.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="ocupacional-tecnico">
+            <h2>Salud Ocupacional y Marco Legal en México</h2>
+            <p>
+                La salud ocupacional es la disciplina encargada de la promoción y mantenimiento del <strong>bienestar físico, mental y social</strong> de los trabajadores. Su objetivo principal es controlar los riesgos para prevenir accidentes y enfermedades.
+            </p>
+
+            <div class="health-dashboard" style="margin-top: 30px;">
+                
+                <div class="data-card" style="border-top-color: #8e44ad;">
+                    <h4>☣️ Enfermedades Profesionales</h4>
+                    <p>Son aquellas causadas directamente por el ejercicio de una profesión tras una exposición prolongada a factores de riesgo.</p>
+                    <ul style="font-size: 0.9em; padding-left: 20px;">
+                        <li><strong>Respiratorias:</strong> Silicosis, asbestosis.</li>
+                        <li><strong>Musculoesqueléticas:</strong> Túnel carpiano, tendinitis.</li>
+                        <li><strong>Agentes:</strong> Químicos, biológicos, físicos y ergonómicos.</li>
+                    </ul>
+                </div>
+
+                <div class="data-card" style="border-top-color: #c0392b;">
+                    <h4>💥 Accidentes de Trabajo</h4>
+                    <p>Todo suceso <strong>repentino</strong> por causa del trabajo que produce lesión orgánica, invalidez o muerte.</p>
+                    <ul style="font-size: 0.9em; padding-left: 20px;">
+                        <li><strong>Causas:</strong> Actos inseguros (incumplimiento) y condiciones inseguras (fallas en equipos).</li>
+                        <li><strong>Tipos:</strong> Caídas, golpes, quemaduras, electrocuciones.</li>
+                    </ul>
+                </div>
+
+                <div class="data-card" style="border-top-color: #2c3e50;">
+                    <h4>⚖️ Marco Legal (México)</h4>
+                    <p>La seguridad no es opcional, es una obligación regulada por instituciones y leyes:</p>
+                    <ul style="font-size: 0.9em; padding-left: 20px;">
+                        <li><strong>STPS:</strong> Secretaría del Trabajo y Previsión Social (vigilancia).</li>
+                        <li><strong>Ley Federal del Trabajo:</strong> Establece obligaciones.</li>
+                        <li><strong>NOMs:</strong> Normas Oficiales Mexicanas (ergonomía, químicos, fuego).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px; color: #2c3e50;">Tendencias e Innovación en Seguridad</h3>
+            <div class="strategies-split">
+                
+                <div class="strategy-column" style="background-color: #eaf2f8;">
+                    <h3>Tecnología y Nuevos Riesgos</h3>
+                    <ul>
+                        <li><strong>Realidad Virtual (VR):</strong> Se utiliza para simular situaciones de riesgo y practicar emergencias en un entorno seguro.</li>
+                        <li><strong>Sensores y Monitoreo:</strong> Uso de software de análisis de datos para identificar riesgos en tiempo real.</li>
+                        <li><strong>Nuevos Materiales:</strong> Investigación constante sobre enfermedades emergentes derivadas de nuevos procesos productivos.</li>
+                    </ul>
+                </div>
+
+                <div class="strategy-column" style="background-color: #eaf2f8;">
+                    <h3>Desafíos Psicosociales y Teletrabajo</h3>
+                    <ul>
+                        <li><strong>Teletrabajo:</strong> Retos en ergonomía doméstica, sedentarismo y manejo de límites horarios.</li>
+                        <li><strong>Salud Mental:</strong> Programas contra el <em>Burnout</em> y el estrés laboral como prioridad moderna.</li>
+                        <li><strong>Cultura de Seguridad:</strong> Promover que el trabajador participe activamente en la identificación de riesgos.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div>
+        <a href=https://cuestionariospst.insst.es/pst/pub/verRellenarCuestionario3-ES.do>Encuesta</a>
+    </div>
+    <footer>
+        <p>&copy; 2025 Proyecto de Comportamiento Organizacional. Desarrollado con HTML5 y CSS3.</p>
+    </footer>
+
+</body>
+</html>
