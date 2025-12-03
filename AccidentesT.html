@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accidentes de trabajo | Teorías y Bienestar</title>
+    <style>
+         @font-face {
+    font-family: 'Futura Light';  /* Este es el nombre que tú le inventas para usarlo después */
+    src: url('Fonts/futura_light_bt.ttf') format('truetype'); /* La ruta exacta a tu carpeta */
+    font-weight: normal;
+    font-style: normal;
+         }
+        /* --- 1. VARIABLES Y RESET --- */
+        :root {
+            --primary-color: #2c3e50;      /* Azul Oscuro */
+            --secondary-color: #3498db;    /* Azul Claro */
+            --accent-success: #27ae60;     /* Verde */
+            --accent-warning: #f1c40f;     /* Amarillo */
+            --accent-danger: #c0392b;      /* Rojo */
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Futura Light', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        /* --- 2. HEADER Y NAV --- */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        header h1 { margin: 0; font-size: 2.8rem; font-weight: 300; }
+        header p { opacity: 0.9; margin-top: 10px; font-size: 1.2rem; }
+
+        nav {
+            background-color: #1a252f;
+            padding: 1rem;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--secondary-color); }
+
+        /* --- 3. LAYOUT GENERAL --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: #2980b9;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        p { margin-bottom: 15px; text-align: justify; }
+
+        /* --- 4. SECCIÓN TEORÍAS (GRID COMPARATIVO) --- */
+        .theories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .theory-card {
+            background: #fff;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .theory-card:hover { transform: translateY(-5px); }
+
+        /* Bordes de color para diferenciar */
+        .theory-conductual { border-top: 5px solid var(--accent-danger); } /* Estímulo */
+        .theory-humanista { border-top: 5px solid var(--accent-warning); } /* Crecimiento */
+
+        .theory-card ul { padding-left: 20px; }
+        .theory-card li { margin-bottom: 8px; }
+
+        /* --- 5. SECCIÓN BIG FIVE (OCEAN) --- */
+        .big-five-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .trait-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .trait-card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        /* --- 6. SECCIÓN SALUD (DASHBOARD & ESTRATEGIAS) --- */
+        .health-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .data-card {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            border-top: 4px solid var(--secondary-color);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Colores específicos para datos */
+        .dc-mental { border-top-color: #3498db; }
+        .dc-economic { border-top-color: var(--accent-danger); }
+        .dc-risk { border-top-color: #e67e22; }
+        .dc-modifiable { border-top-color: var(--accent-success); }
+
+        .data-card h4 { font-size: 1rem; color: #555; margin-top: 0; }
+
+        /* Columnas de Estrategias */
+        .strategies-split {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .strategy-column {
+            flex: 1;
+            min-width: 300px;
+            background: #f1f2f6;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .strategy-column h3 {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .strategy-column ul { list-style: none; padding: 0; }
+        
+        .strategy-column li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #dcdcdc;
+            padding-bottom: 5px;
+        }
+
+        .strategy-column li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--accent-success);
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            nav a { display: block; margin: 10px 0; }
+            .strategies-split { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Accidentes de trabajo</h1>
+    </header>
+    <nav>
+        <a  href="index.html">⬅️ Regresar</a>
+    </nav>
+    <article>
+
+    <section id="definicion-accidente">
+        <h2>1. Definición: El Evento Súbito</h2>
+        <p>A diferencia de la enfermedad (que es evolutiva), el accidente se define por su <strong>instantaneidad</strong>. Es un suceso repentino que sobreviene por causa o con ocasión del trabajo y que produce una ruptura en la normalidad.</p>
+        <p>Desde la física, un accidente es una <strong>transferencia de energía</strong> (mecánica, térmica, eléctrica) que supera la capacidad de resistencia del cuerpo humano (Teoría de Haddon). El resultado puede ser:</p>
+        <ul>
+            <li><strong>Lesión Orgánica:</strong> Daño estructural (fractura, corte).</li>
+            <li><strong>Perturbación Funcional:</strong> Daño en el funcionamiento (parálisis, conmoción).</li>
+            <li><strong>Invalidez o Muerte:</strong> El cese de la capacidad laboral o vital.</li>
+        </ul>
+        <figure style="text-align: center; margin: 20px 0;">
+            <img src = "img/piramide_heinrich.jpg" alt = "Piramide de Heinrich" width="400">
+        </figure>
+    </section>
+
+    <section id="causalidad">
+        <h2>2. Causalidad: ¿Por qué ocurren?</h2>
+        <p>En seguridad industrial, nada ocurre por azar. Herbert Heinrich postuló que detrás de cada accidente grave hay cientos de incidentes menores. Las causas se dividen en dos grandes pilares:</p>
+
+        <h3>A. Actos Inseguros (El Factor Humano)</h3>
+        <p>Representan estadísticamente la mayoría de los accidentes (aprox. 80-90%). Son las acciones u omisiones del trabajador que violan un procedimiento seguro o aceptan un riesgo innecesario.</p>
+        <ul>
+            <li><em>Ejemplos:</em> Operar equipos sin autorización, no usar el Equipo de Protección Personal (EPP), bromear en el trabajo, usar herramientas defectuosas sabiéndolo.</li>
+            <li><em>Raíz profunda:</em> A menudo no es "negligencia", sino exceso de confianza, fatiga, falta de capacitación o problemas psicosociales (distracción).</li>
+        </ul>
+
+        <h3>B. Condiciones Inseguras (El Factor Ambiental)</h3>
+        <p>Son las fallas en el entorno físico, las herramientas o la infraestructura que crean un peligro inminente, independientemente del trabajador.</p>
+        <ul>
+            <li><em>Ejemplos:</em> Cables pelados, pisos resbalosos sin señalizar, maquinaria sin guardas de seguridad, iluminación deficiente, ventilación tóxica.</li>
+            <li><em>Responsabilidad:</em> Estas recaen directamente sobre la administración y el mantenimiento de la empresa.</li>
+        </ul>
+    </section>
+
+    <section id="tipos-accidentes">
+        <h2>3. Clasificación por Mecanismo</h2>
+        <p>Para prevenir, debemos entender cómo la energía impacta al cuerpo. Los tipos más comunes son:</p>
+        
+        <dl>
+            <dt><strong>Caídas (Nivel y Altura)</strong></dt>
+            <dd>La gravedad es la fuerza más constante. Caídas al mismo nivel (tropezones) o de altura (desde andamios) son la principal causa de traumatismos severos.</dd>
+
+            <dt><strong>Golpes y Atrapamientos</strong></dt>
+            <dd>Interacción con objetos en movimiento. Incluye ser golpeado <em>por</em> un objeto (caída de herramienta) o golpearse <em>contra</em> un objeto. Los atrapamientos en engranajes suelen resultar en amputaciones.</dd>
+
+            <dt><strong>Riesgos Eléctricos y Térmicos</strong></dt>
+            <dd>Electrocución (paso de corriente por el cuerpo) que causa paro cardíaco o quemaduras internas. Contacto con superficies extremas (quemaduras por fuego o congelación).</dd>
+        </dl>
+    </section>
+
+    <section id="queso-suizo">
+        <h2>4. La Visión Sistémica: El Modelo de Reason</h2>
+        <p>Para cerrar magistralmente, debemos entender que un accidente rara vez tiene <em>una</em> sola causa. James Reason propuso el "Modelo del Queso Suizo".</p>
+        <p>Imagina varias rebanadas de queso (barreras de defensa: entrenamiento, alarmas, supervisión). Cada rebanada tiene agujeros (fallos). Un accidente solo ocurre cuando <strong>los agujeros de todas las rebanadas se alinean</strong>, permitiendo que el peligro llegue a la persona.</p>
+        <p>Por tanto, el "Acto Inseguro" suele ser solo el último agujero en una cadena de fallos organizacionales previos.</p>
+        <figure style="text-align: center; margin: 20px 0;">
+            <img src = "img/ModeloQuesoSuizo.jpg" alt = "modelo del queso suizo" width="400">
+        </figure>
+    </section>
+
+    <section id="conclusion-accidentes">
+        <h2>5. Conclusión: La Seguridad como Valor</h2>
+        <p>Un accidente es la evidencia de un fallo en el sistema de gestión. Prevenir no es solo poner carteles; es diseñar procesos donde el error humano sea difícil de cometer y donde las condiciones inseguras se detecten antes de que liberen su energía destructiva.</p>
+    </section>
+</article>
+
+    
+    <footer>
+        <p>&copy; 2025 Proyecto de Comportamiento Organizacional. Desarrollado con HTML5 y CSS3.</p>
+    </footer>
+
+</body>
+</html>

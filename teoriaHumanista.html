@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoria humanista | Teorías y Bienestar</title>
+    <style>
+        @font-face {
+    font-family: 'Futura Light';  /* Este es el nombre que tú le inventas para usarlo después */
+    src: url('Fonts/futura_light_bt.ttf') format('truetype'); /* La ruta exacta a tu carpeta */
+    font-weight: normal;
+    font-style: normal;
+         }
+        /* --- 1. VARIABLES Y RESET --- */
+        :root {
+            --primary-color: #2c3e50;      /* Azul Oscuro */
+            --secondary-color: #3498db;    /* Azul Claro */
+            --accent-success: #27ae60;     /* Verde */
+            --accent-warning: #f1c40f;     /* Amarillo */
+            --accent-danger: #c0392b;      /* Rojo */
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Futura Light', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        /* --- 2. HEADER Y NAV --- */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        header h1 { margin: 0; font-size: 2.8rem; font-weight: 300; }
+        header p { opacity: 0.9; margin-top: 10px; font-size: 1.2rem; }
+
+        nav {
+            background-color: #1a252f;
+            padding: 1rem;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--secondary-color); }
+
+        /* --- 3. LAYOUT GENERAL --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: #2980b9;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        p { margin-bottom: 15px; text-align: justify; }
+
+        /* --- 4. SECCIÓN TEORÍAS (GRID COMPARATIVO) --- */
+        .theories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .theory-card {
+            background: #fff;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .theory-card:hover { transform: translateY(-5px); }
+
+        /* Bordes de color para diferenciar */
+        .theory-conductual { border-top: 5px solid var(--accent-danger); } /* Estímulo */
+        .theory-humanista { border-top: 5px solid var(--accent-warning); } /* Crecimiento */
+
+        .theory-card ul { padding-left: 20px; }
+        .theory-card li { margin-bottom: 8px; }
+
+        /* --- 5. SECCIÓN BIG FIVE (OCEAN) --- */
+        .big-five-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .trait-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .trait-card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        /* --- 6. SECCIÓN SALUD (DASHBOARD & ESTRATEGIAS) --- */
+        .health-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .data-card {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            border-top: 4px solid var(--secondary-color);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Colores específicos para datos */
+        .dc-mental { border-top-color: #3498db; }
+        .dc-economic { border-top-color: var(--accent-danger); }
+        .dc-risk { border-top-color: #e67e22; }
+        .dc-modifiable { border-top-color: var(--accent-success); }
+
+        .data-card h4 { font-size: 1rem; color: #555; margin-top: 0; }
+
+        /* Columnas de Estrategias */
+        .strategies-split {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .strategy-column {
+            flex: 1;
+            min-width: 300px;
+            background: #f1f2f6;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .strategy-column h3 {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .strategy-column ul { list-style: none; padding: 0; }
+        
+        .strategy-column li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #dcdcdc;
+            padding-bottom: 5px;
+        }
+
+        .strategy-column li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--accent-success);
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            nav a { display: block; margin: 10px 0; }
+            .strategies-split { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Teoria humanista</h1>
+    </header>
+    <nav>
+        <a  href="index.html">⬅️ Regresar</a>
+    </nav>
+    <article>
+
+    <section id="origen-humanismo">
+        <h2>1. La Rebelión contra el Determinismo</h2>
+        <p>Durante la primera mitad del siglo XX, la imagen del ser humano estaba fragmentada. Por un lado, el <em>conductismo</em> nos reducía a organismos que simplemente reaccionan a estímulos (como robots biológicos). Por otro, el <em>psicoanálisis</em> se centraba en nuestros conflictos internos y traumas pasados.</p>
+        <p>La <strong>Teoría Humanista</strong> surge como una respuesta filosófica vital. Su postulado central es que el individuo posee una dignidad inherente y una tendencia natural hacia la salud mental y el crecimiento. A diferencia de una máquina que se desgasta, el ser humano, bajo las condiciones adecuadas, evoluciona.</p>
+        <p>Esta corriente no pregunta "¿cómo controlamos a la persona?", sino <strong>"¿qué necesita la persona para florecer?"</strong>.</p>
+        <figure style="text-align: center; margin: 20px 0;">
+            <img src="img/abraham-maslow-wide.jpg" alt="Maslow" width="500">
+        </figure>
+    </section>
+
+    <section id="maslow-necesidades">
+        <h2>2. Abraham Maslow: La Arquitectura del Deseo</h2>
+        <p>Maslow transformó nuestra comprensión de la motivación. Propuso que el ser humano no es un ser estático con deseos aleatorios, sino que sigue una jerarquía de necesidades predecible. No podemos dedicarnos a la filosofía si tenemos hambre; pero una vez saciada el hambre, el espíritu pide más.</p>
+        
+        <h3>De la Supervivencia a la Trascendencia</h3>
+        <p>Su famosa pirámide describe este viaje:</p>
+        <ul>
+            <li><strong>Necesidades Básicas (Déficit):</strong> Fisiología, seguridad, pertenencia y estima. Estas funcionan como vitaminas: su falta enferma, pero su presencia solo previene la enfermedad, no "inspira".</li>
+            <li><strong>Autorrealización (Ser):</strong> Es la cúspide del desarrollo humano. Implica el deseo de cumplir con nuestra propia naturaleza y potencial. Un músico debe hacer música, un artista debe pintar y un poeta debe escribir si quiere estar en paz consigo mismo.</li>
+        </ul>
+        <p>En la vida cotidiana y laboral, esto explica por qué un salario alto no garantiza la felicidad si la persona siente que su talento se está desperdiciando. El ser humano necesita <strong>propósito</strong>.</p>
+        <figure style="text-align: center; margin: 20px 0;">
+            <img src="img/PiramideDeMaslow.jpg" alt="Maslow Piramide" width="500">
+        </figure>
+    </section>
+
+    <section id="rogers-persona">
+        <h2>3. Carl Rogers: Las Condiciones para el Crecimiento</h2>
+        <p>Si Maslow describió "qué" necesitamos, Carl Rogers explicó "cómo" lograrlo. Rogers comparaba a las personas con plantas exóticas: no puedes forzarlas a crecer tirando de ellas, solo puedes proveer el clima adecuado.</p>
+        <p>Para Rogers, cualquier relación humana (ya sea terapéutica, educativa o laboral) fomenta el crecimiento solo si ofrece tres condiciones:</p>
+        <ol>
+            <li><strong>Autenticidad (Congruencia):</strong> La capacidad de mostrarse tal cual uno es, sin máscaras profesionales ni fachadas sociales. La honestidad invita a la honestidad.</li>
+            <li><strong>Aceptación Incondicional:</strong> Valorar a la otra persona por el simple hecho de ser humano, independientemente de sus errores o fallos momentáneos. Esto elimina el miedo al juicio.</li>
+            <li><strong>Empatía Profunda:</strong> No es solo sentir lástima, sino hacer el esfuerzo intelectual y emocional de ver el mundo a través de los ojos del otro.</li>
+        </ol>
+        <p>Cuando estas condiciones existen en un grupo, las defensas caen. Las personas dejan de gastar energía protegiéndose y comienzan a usar esa energía para colaborar, crear y resolver problemas complejos.</p>
+        <figure style="text-align: center; margin: 20px 0;">
+            <img src="img/SeguridadPsico.png" alt="seguridad Psicologica" width="500">
+           </figure>
+    </section>
+
+    <section id="conclusion-humanista">
+        <h2>4. Conclusión: El Ser Humano Integral</h2>
+        <p>La lección perdurable del humanismo es que no somos piezas intercambiables. La creatividad, la ética y la pasión no se pueden "ordenar" mediante un memorándum ni comprar solo con dinero. Son cualidades que surgen voluntariamente cuando la persona se siente segura, valorada y libre.</p>
+        <p>Entender esto es fundamental no solo para administrar empresas, sino para construir sociedades más sanas: reconocer que detrás de cada rol (estudiante, empleado, ciudadano) existe una consciencia buscando su propia plenitud.</p>
+    </section>
+</article>
+
+    
+    <footer>
+        <p>&copy; 2025 Proyecto de Comportamiento Organizacional. Desarrollado con HTML5 y CSS3.</p>
+    </footer>
+
+</body>
+</html>

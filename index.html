@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comportamiento Organizacional | Teorías y Bienestar</title>
     <style>
+        @font-face {
+    font-family: 'Futura Light';  /* Este es el nombre que tú le inventas para usarlo después */
+    src: url('Fonts/futura_light_bt.ttf') format('truetype'); /* La ruta exacta a tu carpeta */
+    font-weight: normal;
+    font-style: normal;
+}
+        
         /* --- 1. VARIABLES Y RESET --- */
+         
         :root {
             --primary-color: #2c3e50;      /* Azul Oscuro */
             --secondary-color: #3498db;    /* Azul Claro */
@@ -17,14 +25,15 @@
             --white: #ffffff;
             --shadow: 0 4px 8px rgba(0,0,0,0.08);
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Futura Light', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
             color: var(--text-color);
             background-color: var(--bg-color);
+            
         }
 
         /* --- 2. HEADER Y NAV --- */
@@ -222,7 +231,7 @@
     </style>
 </head>
 <body>
-
+    
     <header>
         <h1>Comportamiento Organizacional</h1>
     </header>
@@ -245,12 +254,14 @@
             <p>
                 Entender la personalidad es una herramienta de gestión crítica. Nos permite predecir reacciones ante el estrés, identificar líderes naturales y diseñar sistemas de incentivos efectivos.
             </p>
-            
-
-[Image of diagram showing interaction between individual group and organization systems]
-
         </section>
-
+<figure style="text-align: center; margin: 30px 0;">
+    <img src="img/caballeritoEnBanco.jpg" alt="Ilustración de introspección" style="max-width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    
+    <figcaption style="font-style: italic; color: #555; margin-top: 10px; font-size: 0.9em;">
+        "La pausa necesaria: En un mundo de ruido constante donde el silencio es la herramienta más poderosa para la salud mental."
+    </figcaption>
+</figure>
         <section id="teorias">
             <h2>Teorías de la Personalidad</h2>
             <p>Existen diversos enfoques para entender por qué los empleados actúan como actúan. Aquí comparamos dos de los más influyentes:</p>
@@ -264,6 +275,7 @@
                         <li><strong>Mecanismo:</strong> Condicionamiento Operante.</li>
                         <li><strong>Aplicación:</strong> Si cambias los incentivos y el ambiente físico, cambiarás el comportamiento del empleado.</li>
                     </ul>
+                    <a href="teoriaConductual.html">leer más</a>  
                 </article>
 
                 <article class="theory-card theory-humanista">
@@ -274,6 +286,7 @@
                         <li><strong>Mecanismo:</strong> Motivación interna y jerarquía de necesidades.</li>
                         <li><strong>Aplicación:</strong> Liderazgo empático, confianza y fomento de la creatividad individual.</li>
                     </ul>
+                    <a href="teoriaHumanista.html">leer más</a>  
                 </article>
             </div>
         </section>
@@ -288,26 +301,31 @@
                 <div class="trait-card">
                     <h4>(O) Apertura a la Experiencia</h4>
                     <p>Creatividad, curiosidad intelectual y gusto por la novedad. Su opuesto es la cerrazón o resistencia al cambio.</p>
+                    <a href="Apertura.html">leer más</a>  
                 </div>
                 
                 <div class="trait-card">
                     <h4>(C) Responsabilidad (Conscientiousness)</h4>
                     <p>Autodisciplina, organización y orientación al logro. Es el mejor predictor del desempeño laboral general.</p>
+                    <a href="responsabilidad.html">leer más</a>  
                 </div>
 
                 <div class="trait-card">
                     <h4>(E) Extraversión</h4>
                     <p>Búsqueda de energía en contextos sociales y asertividad. Su opuesto es la introversión (reserva, reflexión).</p>
+                    <a href="extraversion.html">leer más</a>  
                 </div>
 
                 <div class="trait-card">
                     <h4>(A) Amabilidad</h4>
                     <p>Tendencia a ser compasivo, cooperativo y empático. Clave para el trabajo en equipo y clima laboral.</p>
+                    <a href="amabilidad.html">leer más</a>  
                 </div>
 
                 <div class="trait-card">
                     <h4>(N) Neuroticismo</h4>
                     <p>Inestabilidad emocional. Mide la capacidad de gestionar el estrés y la ansiedad ante situaciones críticas.</p>
+                    <a href="neuroticismo.html">leer más</a>  
                 </div>
             </div>
         </section>
@@ -335,6 +353,7 @@
                     <h4>🔄 Factores Clave</h4>
                     <p>Interacción social, mentalidad, seguridad económica y sueño son factores modificables.</p>
                 </div>
+                <a href="SaludYEntorno.html">leer más</a>  
             </div>
 
             <h3 style="text-align:center; color: var(--primary-color);">Estrategias de Mejora</h3>
@@ -379,6 +398,7 @@
                         <li><strong>Musculoesqueléticas:</strong> Túnel carpiano, tendinitis.</li>
                         <li><strong>Agentes:</strong> Químicos, biológicos, físicos y ergonómicos.</li>
                     </ul>
+                    <a href="EnfermedadesP.html">leer más</a>  
                 </div>
 
                 <div class="data-card" style="border-top-color: #c0392b;">
@@ -388,6 +408,7 @@
                         <li><strong>Causas:</strong> Actos inseguros (incumplimiento) y condiciones inseguras (fallas en equipos).</li>
                         <li><strong>Tipos:</strong> Caídas, golpes, quemaduras, electrocuciones.</li>
                     </ul>
+                    <a href="AccidentesT.html">leer más</a>  
                 </div>
 
                 <div class="data-card" style="border-top-color: #2c3e50;">
@@ -398,6 +419,7 @@
                         <li><strong>Ley Federal del Trabajo:</strong> Establece obligaciones.</li>
                         <li><strong>NOMs:</strong> Normas Oficiales Mexicanas (ergonomía, químicos, fuego).</li>
                     </ul>
+                    <a href="MarcoL.html">leer más</a>  
                 </div>
             </div>
 
@@ -426,6 +448,7 @@
     </div>
     <div>
         <a href=https://cuestionariospst.insst.es/pst/pub/verRellenarCuestionario3-ES.do>Encuesta</a>
+        <a href="https://youtu.be/Qtf8YFw8iZg?si=v4pnVJgsTp-3r4yE">🗿</a>
     </div>
     <footer>
         <p>&copy; 2025 Proyecto de Comportamiento Organizacional. Desarrollado con HTML5 y CSS3.</p>
